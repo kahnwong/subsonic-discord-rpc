@@ -3,7 +3,7 @@ import time
 
 from pypresence import ActivityType, Presence
 
-from subsonic_discord_rpc import subsonic
+from media_discord_rpc import subsonic
 
 client_id = os.getenv("DISCORD_CLIENT_ID")
 RPC = Presence(client_id)
