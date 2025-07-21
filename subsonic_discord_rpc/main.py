@@ -3,17 +3,25 @@ import time
 
 from pypresence import ActivityType, Presence
 
+from subsonic_discord_rpc import subsonic
+
 client_id = os.getenv("CLIENT_ID")
 RPC = Presence(client_id)
 RPC.connect()
 
-RPC.update(
-    activity_type=ActivityType.LISTENING,
-    details="Aspiral",
-    state="Epica",
-    # end=int(300) + time.time(),
-    # small_image="",
-)
-
 while True:
+    now_playing = subsonic.get_now_playing()
+    print(now_playing)
+
+    if now_playing:
+        RPC.update(
+            activity_type=ActivityType.LISTENING,
+            details=now_playing["title"],
+            state=now_playing["artist"],
+            # end=int(300) + time.time(),
+            small_image=now_playing["coverArt"],
+        )
+    else:
+        print("Nothing is currently playing...")
+
     time.sleep(15)
