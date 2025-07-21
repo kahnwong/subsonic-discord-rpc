@@ -3,11 +3,11 @@ import urllib.parse
 
 import requests
 
-BASE_URL = os.environ["BASE_URL"]
+SUBSONIC_API_ENDPOINT = os.environ["SUBSONIC_API_ENDPOINT"]
 params = {
-    "u": os.environ["USERNAME"],
-    "t": os.environ["TOKEN"],
-    "s": os.environ["SALT"],
+    "u": os.environ["SUBSONIC_USERNAME"],
+    "t": os.environ["SUBSONIC_TOKEN"],
+    "s": os.environ["SUBSONIC_SALT"],
     "v": "1.16.1",
     "c": "github-readme",
     "f": "json",
@@ -24,14 +24,16 @@ def _parse_track_info(track_info):
 
 
 def get_now_playing(params=params):
-    r = requests.get(f"{BASE_URL}/rest/getNowPlaying", params=params).json()
+    r = requests.get(
+        f"{SUBSONIC_API_ENDPOINT}/rest/getNowPlaying", params=params
+    ).json()
 
     try:
         r = r["subsonic-response"]["nowPlaying"]["entry"][0]
 
         track_info = _parse_track_info(r)
         track_info["coverArt"] = (
-            f"{BASE_URL}/rest/getCoverArt?id={track_info['coverArt']}&size=96&{urllib.parse.urlencode(params)}"
+            f"{SUBSONIC_API_ENDPOINT}/rest/getCoverArt?id={track_info['coverArt']}&size=96&{urllib.parse.urlencode(params)}"
         )
 
         return track_info
