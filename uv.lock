@@ -1,0 +1,20 @@
+version = 1
+revision = 2
+requires-python = ">=3.13"
+
+[[package]]
+name = "pypresence"
+version = "4.4.0"
+source = { url = "https://github.com/qwertyquerty/pypresence/archive/master.zip" }
+sdist = { hash = "sha256:0ae6a2903e1a5335eca3de975c616092cfaed3987d24f054264aee0716e5978b" }
+
+[[package]]
+name = "subsonic-discord-rpc"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "pypresence" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pypresence", url = "https://github.com/qwertyquerty/pypresence/archive/master.zip" }]

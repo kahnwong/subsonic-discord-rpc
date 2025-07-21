@@ -1,0 +1,19 @@
+[project]
+name = "subsonic-discord-rpc"
+version = "0.1.0"
+description = "Display your listening activity from subsonic-compatible servers."
+readme = "README.md"
+authors = [
+    { name = "Karn Wong", email = "karn@karnwong.me" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pypresence",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+pypresence = { url = "https://github.com/qwertyquerty/pypresence/archive/master.zip" }
