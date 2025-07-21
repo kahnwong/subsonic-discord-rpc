@@ -28,7 +28,7 @@ def jellyfin_get_now_playing():
 
         title = now_playing["Name"]
         image = f"{os.getenv('JELLYFIN_ENDPOINT')}/Items/{now_playing['PlayState']['MediaSourceId']}/Images/Primary?fillHeight=100&tag={now_playing['ImageTags']['Primary']}"
-        r = {"details": title, "state": "", "image": image}
+        r = {"details": title, "state": None, "image": image}
 
         if now_playing["Type"] == "Episode":
             r["details"] = now_playing["SeriesName"]
