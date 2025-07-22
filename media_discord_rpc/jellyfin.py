@@ -1,6 +1,6 @@
-import os
-
 from jellyfin_apiclient_python import JellyfinClient
+
+from media_discord_rpc import app_config
 
 client = JellyfinClient()
 client.config.data["auth.ssl"] = True
@@ -13,8 +13,8 @@ def jellyfin_get_now_playing():
         {
             "Servers": [
                 {
-                    "AccessToken": os.getenv("JELLYFIN_API_KEY"),
-                    "address": os.getenv("JELLYFIN_ENDPOINT"),
+                    "AccessToken": app_config["JELLYFIN_API_KEY"],
+                    "address": app_config["JELLYFIN_ENDPOINT"],
                 }
             ]
         },
@@ -27,7 +27,7 @@ def jellyfin_get_now_playing():
         now_playing = client.jellyfin.get_now_playing(session_id)
 
         title = now_playing["Name"]
-        image = f"{os.getenv('JELLYFIN_ENDPOINT')}/Items/{now_playing['PlayState']['MediaSourceId']}/Images/Primary?fillHeight=100&tag={now_playing['ImageTags']['Primary']}"
+        image = f"{app_config['JELLYFIN_ENDPOINT']}/Items/{now_playing['PlayState']['MediaSourceId']}/Images/Primary?fillHeight=100&tag={now_playing['ImageTags']['Primary']}"
         r = {"details": title, "state": None, "image": image}
 
         if now_playing["Type"] == "Episode":
@@ -36,9 +36,9 @@ def jellyfin_get_now_playing():
                 f"S{now_playing['ParentIndexNumber']}E{now_playing['IndexNumber']}"
             )
             r["image"] = (
-                f"{os.getenv('JELLYFIN_ENDPOINT')}/Items/{now_playing['ParentThumbItemId']}/Images/Primary?fillHeight=100&tag={now_playing['SeriesPrimaryImageTag']}"
+                f"{app_config['JELLYFIN_ENDPOINT']}/Items/{now_playing['ParentThumbItemId']}/Images/Primary?fillHeight=100&tag={now_playing['SeriesPrimaryImageTag']}"
             )
 
         return r
-    except:
+    except:  # noqa
         return None

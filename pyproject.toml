@@ -8,14 +8,20 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
+    "click>=8.2.1",
     "jellyfin-apiclient-python>=1.11.0",
     "pypresence",
+    "pyyaml>=6.0.2",
     "requests>=2.32.4",
 ]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project.scripts]
+media-discord-rpc = "media_discord_rpc.cli:cli"
 
 [tool.uv.sources]
 pypresence = { url = "https://github.com/qwertyquerty/pypresence/archive/master.zip" }

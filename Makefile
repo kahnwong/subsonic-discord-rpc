@@ -1,2 +1,5 @@
-start:
-	uv run python3 media_discord_rpc/main.py
+run:
+	uv run media-discord-rpc
+
+install:
+	 uv tool install . --force

@@ -1,13 +1,14 @@
-import os
 import urllib.parse
 
 import requests
 
-SUBSONIC_API_ENDPOINT = os.environ["SUBSONIC_API_ENDPOINT"]
+from media_discord_rpc import app_config
+
+SUBSONIC_API_ENDPOINT = app_config["SUBSONIC_API_ENDPOINT"]
 params = {
-    "u": os.environ["SUBSONIC_USERNAME"],
-    "t": os.environ["SUBSONIC_TOKEN"],
-    "s": os.environ["SUBSONIC_SALT"],
+    "u": app_config["SUBSONIC_USERNAME"],
+    "t": app_config["SUBSONIC_TOKEN"],
+    "s": app_config["SUBSONIC_SALT"],
     "v": "1.16.1",
     "c": "media-discord-rpc",
     "f": "json",
