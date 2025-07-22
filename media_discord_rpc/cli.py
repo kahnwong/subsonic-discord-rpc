@@ -47,3 +47,18 @@ def media():
             print("Nothing is currently playing...")
 
         time.sleep(30)
+
+
+@cli.command(name="writing")
+def writing():
+    "Display writing activity"
+    while True:
+        RPC.update(
+            activity_type=ActivityType.PLAYING,
+            details="Writing a blog post",
+            state=None,
+            small_image="https://github.com/kahnwong/dashboard-icons/blob/master/rpc/tea.png?raw=true",
+        )
+
+        print("Writing a blog post...")
+        time.sleep(30)
