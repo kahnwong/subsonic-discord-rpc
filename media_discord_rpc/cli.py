@@ -62,3 +62,18 @@ def writing():
 
         print("Writing a blog post...")
         time.sleep(30)
+
+
+@cli.command(name="tinkering")
+def tinkering():
+    "Display tinkering activity"
+    while True:
+        RPC.update(
+            activity_type=ActivityType.PLAYING,
+            details="Tinkering",
+            state=None,
+            small_image="https://github.com/kahnwong/dashboard-icons/blob/master/rpc/intellij.png?raw=true",
+        )
+
+        print("Tinkering...")
+        time.sleep(30)
