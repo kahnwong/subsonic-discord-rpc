@@ -16,28 +16,37 @@ def cli():
     ""
 
 
-@cli.command(name="media")
-def media():
-    "Display listening/watching activity"
+@cli.command(name="watching")
+def watching():
+    "Display watching activity"
     while True:
-        subsonic_now_playing = subsonic.get_now_playing()
-        print(subsonic_now_playing)
-
-        jellyfin_now_playing = jellyfin.jellyfin_get_now_playing()
-        print(jellyfin_now_playing)
-
-        now_playing = None
-        activity_type = None
-        if subsonic_now_playing:
-            now_playing = subsonic_now_playing
-            activity_type = ActivityType.LISTENING
-        elif jellyfin_now_playing:
-            now_playing = jellyfin_now_playing
-            activity_type = ActivityType.WATCHING
+        now_playing = jellyfin.jellyfin_get_now_playing()
+        print(now_playing)
 
         if now_playing:
             RPC.update(
-                activity_type=activity_type,
+                activity_type=ActivityType.WATCHING,
+                details=now_playing["details"],
+                state=now_playing["state"],
+                # end=int(300) + time.time(),
+                small_image=now_playing["image"],
+            )
+        else:
+            print("Nothing is currently playing...")
+
+        time.sleep(30)
+
+
+@cli.command(name="listening")
+def listening():
+    "Display listening activity"
+    while True:
+        now_playing = subsonic.get_now_playing()
+        print(now_playing)
+
+        if now_playing:
+            RPC.update(
+                activity_type=ActivityType.LISTENING,
                 details=now_playing["details"],
                 state=now_playing["state"],
                 # end=int(300) + time.time(),
