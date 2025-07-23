@@ -1,14 +1,13 @@
 package discord
 
 import (
-	"os"
-
+	"github.com/kahnwong/media-discord-rpc/config"
 	"github.com/kahnwong/rich-go/client"
 	"github.com/rs/zerolog/log"
 )
 
 func SetActivity(activityType int, state string, details string, smallImage string) {
-	err := client.Login(os.Getenv("DISCORD_APP_ID"))
+	err := client.Login(config.AppConfig.DiscordAppID)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Failed to login to Discord")
 	}
