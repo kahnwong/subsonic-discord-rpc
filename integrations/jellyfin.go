@@ -24,12 +24,19 @@ func JellyfinGetNowPlaying() (JellyfinNowPlaying, error) {
 	var r JellyfinNowPlaying
 	if len(sessions) > 0 {
 		nowPlaying := sessions[0].NowPlayingItem.Get()
-		imageTagsPrimary := nowPlaying.ImageTags["Primary"]
 
 		r = JellyfinNowPlaying{
 			Title:    *nowPlaying.Name.Get(),
 			Episode:  "",
-			CoverArt: fmt.Sprintf("%s/Items/%s/Images/Primary?fillHeight=100&tag=%s", AppConfig.JellyfinApiEndpoint, *nowPlaying.Id, imageTagsPrimary),
+			CoverArt: fmt.Sprintf("%s/Items/%s/Images/Primary?fillHeight=100&tag=%s", AppConfig.JellyfinApiEndpoint, *nowPlaying.Id, nowPlaying.ImageTags["Primary"]),
+		}
+
+		if *nowPlaying.Type == "Episode" {
+			r = JellyfinNowPlaying{
+				Title:    *nowPlaying.SeriesName.Get(),
+				Episode:  fmt.Sprintf("S%vE%v", *nowPlaying.ParentIndexNumber.Get(), *nowPlaying.IndexNumber.Get()),
+				CoverArt: fmt.Sprintf("%s/Items/%s/Images/Primary?fillHeight=100&tag=%s", AppConfig.JellyfinApiEndpoint, *nowPlaying.SeriesId.Get(), *nowPlaying.SeriesPrimaryImageTag.Get()),
+			}
 		}
 	}
 
