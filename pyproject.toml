@@ -1,6 +1,6 @@
 [project]
 name = "media-discord-rpc"
-version = "0.1.1"
+version = "0.1.2"
 description = "Display your listening activity from subsonic-compatible servers & watching activity from jellyfin."
 readme = "README.md"
 authors = [

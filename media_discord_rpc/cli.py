@@ -5,7 +5,7 @@ from pypresence import ActivityType, Presence
 
 from media_discord_rpc import app_config, jellyfin, subsonic
 
-client_id = app_config["DISCORD_CLIENT_ID"]
+client_id = app_config["DISCORD_APP_ID"]
 RPC = Presence(client_id)
 RPC.connect()
 
