@@ -8,6 +8,7 @@ require (
 	github.com/kahnwong/cli-base v0.0.0-20250506033212-029722a13b47
 	github.com/kahnwong/rich-go v0.0.0-20250723095307-73408b97cf8c
 	github.com/rs/zerolog v1.34.0
+	github.com/sj14/jellyfin-go v0.3.4-0.20250718181305-adde937d3696
 	github.com/spf13/cobra v1.9.1
 )
 
@@ -128,5 +129,6 @@ require (
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
+	gopkg.in/validator.v2 v2.0.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

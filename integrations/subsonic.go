@@ -43,7 +43,7 @@ type NowPlayingParsed struct {
 	CoverArt string
 }
 
-func getNowPlaying() NowPlaying {
+func subsonicGetNowPlaying() NowPlaying {
 	var response NowPlaying
 	err := requests.
 		URL(AppConfig.SubsonicApiEndpoint).
@@ -61,7 +61,7 @@ func getNowPlaying() NowPlaying {
 }
 
 func SubsonicNowPlaying() NowPlayingParsed {
-	nowPlaying := getNowPlaying()
+	nowPlaying := subsonicGetNowPlaying()
 
 	if len(nowPlaying.SubsonicResponse.NowPlaying.Entry) > 0 {
 		coverArt := nowPlaying.SubsonicResponse.NowPlaying.Entry[0].CoverArt
