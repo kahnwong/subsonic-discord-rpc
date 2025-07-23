@@ -24,8 +24,5 @@ repos:
       - id: go-unit-tests
       - id: go-vet
       - id: golangci-lint
-      - id: ruff-check
-      - id: ruff-format
-      - id: uv-lock
       - id: yamlfmt
       - id: trufflehog

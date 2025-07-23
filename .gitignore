@@ -1,5 +1,2 @@
 .env
-__pycache__
-*.egg-info
-build
 media-discord-rpc
