@@ -15,7 +15,7 @@ var writingCmd = &cobra.Command{
 	Short: "Display writing activity",
 	Run: func(cmd *cobra.Command, args []string) {
 		for {
-			discord.SetActivity(discord.DiscordApps.Intellij, client.ActivityTypes.Playing, "Writing a blog post", "", "https://github.com/kahnwong/dashboard-icons/blob/master/rpc/tea.png?raw=true")
+			discord.SetActivity(discord.DiscordApps.Intellij, client.ActivityTypes.Playing, "Writing a blog post", "", "")
 
 			log.Info().Msg("Writing...")
 			time.Sleep(60 * time.Second)

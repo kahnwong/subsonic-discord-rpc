@@ -14,7 +14,7 @@ var tinkeringCmd = &cobra.Command{
 	Short: "Display tinkering activity",
 	Run: func(cmd *cobra.Command, args []string) {
 		for {
-			discord.SetActivity(discord.DiscordApps.Intellij, client.ActivityTypes.Playing, "Tinkering", "", "https://github.com/kahnwong/dashboard-icons/blob/master/rpc/intellij.png?raw=true")
+			discord.SetActivity(discord.DiscordApps.Intellij, client.ActivityTypes.Playing, "Tinkering", "", "")
 
 			log.Info().Msg("Tinkering...")
 			time.Sleep(60 * time.Second)
