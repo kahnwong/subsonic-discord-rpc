@@ -6,8 +6,20 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-func SetActivity(activityType int, state string, details string, smallImage string) {
-	err := client.Login(config.AppConfig.DiscordAppID)
+type DiscordApp struct {
+	Subsonic string
+	Jellyfin string
+	Intellij string
+}
+
+var DiscordApps = DiscordApp{
+	Subsonic: config.AppConfig.DiscordAppIDSubsonic,
+	Jellyfin: config.AppConfig.DiscordAppIDJellyfin,
+	Intellij: config.AppConfig.DiscordAppIDIntellij,
+}
+
+func SetActivity(app string, activityType int, state string, details string, largeImage string) {
+	err := client.Login(app)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Failed to login to Discord")
 	}
@@ -16,7 +28,7 @@ func SetActivity(activityType int, state string, details string, smallImage stri
 		ActivityType: activityType,
 		State:        state,
 		Details:      details,
-		SmallImage:   smallImage,
+		LargeImage:   largeImage,
 	})
 
 	if err != nil {

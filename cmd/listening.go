@@ -20,7 +20,7 @@ var listeningCmd = &cobra.Command{
 			fmt.Println(nowPlaying)
 
 			if nowPlaying.Title != "" {
-				discord.SetActivity(client.ActivityTypes.Listening, nowPlaying.Artist, nowPlaying.Title, nowPlaying.CoverArt)
+				discord.SetActivity(discord.DiscordApps.Subsonic, client.ActivityTypes.Listening, nowPlaying.Artist, nowPlaying.Title, nowPlaying.CoverArt)
 			} else {
 				log.Info().Msg("Nothing is currently playing...")
 			}

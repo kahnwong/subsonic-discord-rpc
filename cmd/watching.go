@@ -21,7 +21,7 @@ var watchingCmd = &cobra.Command{
 			fmt.Println(nowPlaying)
 
 			if nowPlaying.Title != "" {
-				discord.SetActivity(client.ActivityTypes.Listening, nowPlaying.Episode, nowPlaying.Title, nowPlaying.CoverArt)
+				discord.SetActivity(discord.DiscordApps.Jellyfin, client.ActivityTypes.Listening, nowPlaying.Episode, nowPlaying.Title, nowPlaying.CoverArt)
 			} else {
 				log.Info().Msg("Nothing is currently playing...")
 			}
