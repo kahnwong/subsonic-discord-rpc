@@ -47,7 +47,7 @@ func init() {
 	config := &jellyfin.Configuration{
 		Servers: jellyfin.ServerConfigurations{{URL: AppConfig.JellyfinApiEndpoint}},
 		DefaultHeader: map[string]string{
-			"Authorization": fmt.Sprintf("MediaBrowser Token=\"%s\"", "736a20a8e3ba430bb75a4ad9009e6ef9"),
+			"Authorization": fmt.Sprintf("MediaBrowser Token=\"%s\"", AppConfig.JelllyfinApiKey),
 		},
 	}
 
